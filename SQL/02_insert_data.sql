@@ -10,7 +10,6 @@ insert into Venue (venue_name, address) VALUES
 ("Shilp Sadan", "9 East end, Mumbai"),
 ("Nritya Kala Mandir", "25 Kothrud, Pune");
 
-
 insert into Event (event_name, event_date, event_time, venue_id, total_seats, available_seats, ticket_price, event_type) VALUES
 ('Bollywood Drama', '2025-05-01', '19:00:00', 1, 100, 80, 500.00, 'Concert'),
 ('Cricket Championship Cup', '2025-05-10', '14:30:00', 4, 200, 150, 2000.00, 'Sports'),
@@ -35,11 +34,9 @@ insert into customer(email, phone_number, customer_name, booking_id) VALUES
 ('suresh.menon@example.com', 9876543218, 'Suresh Menon', 0),
 ('anjali.gupta@example.com', 9876543219, 'Anjali Gupta', 0);
 
-select * from event;
-
 insert into booking (customer_id, event_id, num_tickets, total_cost, booking_date)
 VALUES
-  (1, 1, 2, 1000, '2025-04-01'),
+  (2, 8, 2, 3000, '2025-04-01'),
   (2, 2, 1, 2000, '2025-04-02'),
   (3, 3, 3, 1800, '2025-04-03'),
   (4, 4, 2, 2000, '2025-04-04'),
@@ -50,8 +47,24 @@ VALUES
   (9, 9, 2, 1400, '2025-04-09'),
   (10,10, 4, 3400, '2025-04-10');
 
-select * from booking;
 
+insert into booking (customer_id, event_id, num_tickets, total_cost, booking_date) 
+VALUES
+(1, 1, 2, 1000, '2025-04-11'),
+(1, 2, 1, 2000, '2025-04-12'),
+(1, 3, 3, 1800, '2025-04-13'),
+(1, 8, 1, 1500, '2025-04-02'),
+
+(2, 4, 2, 2000, '2025-04-14'),
+(2, 5, 4, 2600, '2025-04-15'),
+(2, 6, 2, 2000, '2025-04-17'),
+(2, 8, 1, 1500, '2025-04-02'),
+
+(3, 9, 2, 1400, '2025-04-19'),
+(4, 10, 4, 3400, '2025-04-20');
+
+update customer SET booking_id = 11 WHERE customer_id = 1;
+select * from customer;
 
 
 

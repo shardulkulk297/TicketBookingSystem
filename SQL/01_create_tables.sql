@@ -44,6 +44,7 @@ ALTER TABLE Venue
 MODIFY venue_name VARCHAR(25) NOT NULL,
 MODIFY address VARCHAR(100) NOT NULL;
 
+
 ALTER TABLE Event 
 MODIFY event_date DATE NOT NULL,
 MODIFY event_time TIME NOT NULL,
@@ -64,4 +65,5 @@ MODIFY event_id INT NOT NULL,
 MODIFY num_tickets INT(50) NOT NULL,
 MODIFY total_cost INT(50) NOT NULL,
 MODIFY booking_date DATE NOT NULL;
+
 
