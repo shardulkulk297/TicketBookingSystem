@@ -12,12 +12,7 @@ public class Event {
     private int available_seats;
     private int total_seats;
     private double ticket_price;
-    private enum EventType{
-        Movie,
-        Sports,
-        Concert
-    };
-    private EventType event_type;
+    private String event_type;
 
 
     public Event(){
@@ -31,7 +26,7 @@ public class Event {
         this.event_type = null;
     }
     //setting values
-    public Event(String event_name, LocalDate event_date, LocalTime event_time, String venue_name, int total_seats, int available_seats, double ticket_price, EventType event_type){
+    public Event(String event_name, LocalDate event_date, LocalTime event_time, String venue_name, int total_seats, int available_seats, double ticket_price, String event_type){
         this.event_name = event_name;
         this.event_date = event_date;
         this.event_time = event_time;
@@ -44,15 +39,19 @@ public class Event {
 
     //getter functions
     public String getEvent_name(){
+
         return event_name;
     }
     public LocalDate getEvent_date(){
+
         return event_date;
     }
     public LocalTime getEvent_time(){
+
         return event_time;
     }
     public String getVenue_name(){
+
         return venue_name;
     }
 
@@ -66,10 +65,41 @@ public class Event {
     public double getTicket_price(){
         return ticket_price;
     }
-    public EventType getEventType(){
+    public String getEventType(){
         return event_type;
     }
 
+    public void setVenue_name(String venue_name) {
+        this.venue_name = venue_name;
+    }
+
+    public void setAvailable_seats(int available_seats) {
+        this.available_seats = available_seats;
+    }
+
+    public void setEvent_date(LocalDate event_date) {
+        this.event_date = event_date;
+    }
+
+    public void setEvent_time(LocalTime event_time) {
+        this.event_time = event_time;
+    }
+
+    public void setEvent_name(String event_name) {
+        this.event_name = event_name;
+    }
+
+    public void setEvent_type(String event_type) {
+        this.event_type = event_type;
+    }
+
+    public void setTicket_price(double ticket_price) {
+        this.ticket_price = ticket_price;
+    }
+
+    public void setTotal_seats(int total_seats) {
+        this.total_seats = total_seats;
+    }
     public double calculate_total_revenue(){
 
         double total_revenue = ticket_price * (total_seats - available_seats);
