@@ -3,12 +3,12 @@ package entity;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Event {
+public abstract class Event {
     //Encapsulation
     private String event_name;
     private LocalDate event_date;
     private LocalTime event_time;
-    private String venue_name;
+    private Venue venue;
     private int available_seats;
     private int total_seats;
     private double ticket_price;
@@ -19,18 +19,18 @@ public class Event {
         this.event_name = "";
         this.event_date = null;
         this.event_time = null;
-        this.venue_name = "";
+        this.venue =null;
         this.total_seats = 0;
         this.available_seats = 0;
         this.ticket_price = 0.00;
         this.event_type = null;
     }
     //setting values
-    public Event(String event_name, LocalDate event_date, LocalTime event_time, String venue_name, int total_seats, int available_seats, double ticket_price, String event_type){
+    public Event(String event_name, LocalDate event_date, LocalTime event_time, Venue venue, int total_seats, int available_seats, double ticket_price, String event_type){
         this.event_name = event_name;
         this.event_date = event_date;
         this.event_time = event_time;
-        this.venue_name = venue_name;
+        this.venue = venue;
         this.total_seats = total_seats;
         this.available_seats = available_seats;
         this.ticket_price = ticket_price;
@@ -50,9 +50,9 @@ public class Event {
 
         return event_time;
     }
-    public String getVenue_name(){
+    public Venue getVenue(){
 
-        return venue_name;
+        return venue;
     }
 
     public int getTotal_seats(){
@@ -69,8 +69,8 @@ public class Event {
         return event_type;
     }
 
-    public void setVenue_name(String venue_name) {
-        this.venue_name = venue_name;
+    public void setVenue(Venue venue) {
+        this.venue = venue;
     }
 
     public void setAvailable_seats(int available_seats) {
@@ -136,14 +136,21 @@ public class Event {
         available_seats = available_seats + num_tickets;
         System.out.println("Booking canceled");
     }
-    public void display_event_details(){
-        System.out.println("Event Name: " + event_name);
-        System.out.println("Event Date: " + event_date);
-        System.out.println("Event Time: " + event_time);
-        System.out.println("Venue: " + venue_name);
-        System.out.println("Total Seats: " + total_seats);
-        System.out.println("Available Seats: " + available_seats);
-        System.out.println("Ticket Price: " + ticket_price);
-        System.out.println("Event Type: " + event_type);
+    public abstract void display_event_details();
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Event Name: ").append(event_name).append("\n");
+        sb.append("Event Date: ").append(event_date).append("\n");
+        sb.append("Event Time: ").append(event_time).append("\n");
+        sb.append("Venue: ").append(venue).append("\n");
+        sb.append("Total Seats: ").append(total_seats).append("\n");
+        sb.append("Available Seats: ").append(available_seats).append("\n");
+        sb.append("Ticket Price: ").append(ticket_price).append("\n");
+        sb.append("Event Type: ").append(event_type).append("\n");
+        sb.append("Total Revenue: ").append(calculate_total_revenue());
+        return sb.toString();
     }
+
 }

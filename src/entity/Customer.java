@@ -39,5 +39,14 @@ public class Customer {
         return phone_number;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Customer Name: ").append(customer_name).append("\n");
+        sb.append("Email: ").append(email).append("\n");
+        sb.append("Phone Number: ").append(phone_number);
+        return sb.toString();
+    }
+
 
 }

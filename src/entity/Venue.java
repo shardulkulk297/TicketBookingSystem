@@ -32,6 +32,13 @@ public class Venue {
         System.out.println("Venue Name: " +venue_name);
         System.out.println("Venue Address: "+ address);
     }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Venue Name: ").append(venue_name).append("\n");
+        sb.append("Address: ").append(address);
+        return sb.toString();
+    }
 
 
 }
