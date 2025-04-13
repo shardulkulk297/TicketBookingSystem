@@ -12,12 +12,7 @@ import util.EventComparator;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.InputMismatchException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -117,23 +112,37 @@ public class TicketBookingSystem {
                 }
                 case 2 -> {
                     System.out.println("\n--- Available Events ---");
-                    Map<Integer, Event> allEvents = system.bookingService.getAllEvents();
-                    if (allEvents.isEmpty()) {
-                        System.out.println("No events available.");
-                    } else {
 
-                        List<Event> sortedEvents = allEvents.values().stream()
-                                .sorted(new EventComparator())
-                                .collect(Collectors.toList());
-
-                        for (Event event : sortedEvents) {
-                            try {
-                                system.eventService.getEventDetails(event);
-                                System.out.println("--------------------");
-                            } catch (EventNotFoundException e) {
-                                System.out.println("Error displaying event details: " + e.getMessage());
-                            }
+                    if(system.events.isEmpty())
+                    {
+                        System.out.println("No Events Scheduled");
+                    }
+                    else{
+                        Collections.sort(system.events, new EventComparator());
+                        for (int i = 0; i < system.events.size(); i++) {
+                            System.out.println((i + 1) + ". " + system.events.get(i).getEvent_name());
                         }
+                    }
+
+
+                    System.out.print("Select event number: ");
+                    int idx = Integer.parseInt(sc.nextLine());
+                    if (idx >= 1 && idx <= system.events.size()) {
+
+
+                        try{
+                            system.eventService.getEventDetails(system.events.get(idx - 1));
+                        }
+                        catch (EventNotFoundException e){
+                            System.out.println(e.getMessage());
+
+                        }
+
+
+
+
+                    } else {
+                        System.out.println("Invalid selection.");
                     }
                 }
                 case 3 -> {
@@ -175,7 +184,7 @@ public class TicketBookingSystem {
                                 String phone = sc.nextLine();
 
                                 Customer customer = new Customer(custName, email, phone);
-                                customers.put(email, customer); // Add customer to map using email as key
+                                customers.put(email, customer);
                             }
 
 
@@ -184,9 +193,9 @@ public class TicketBookingSystem {
 
                             if(booking == null){
                                 System.out.println("Booking failed. Check availability or customer details.");
-                                // No NullPointerException throw needed here, handled by service logic potentially
+
                             }
-                            // Success message is printed within book_tickets
+
 
                         } else {
                             System.out.println("Invalid Event ID selection.");
@@ -214,7 +223,6 @@ public class TicketBookingSystem {
 
 
                         system.bookingService.cancel_tickets(bookingId);
-                        // Success/failure message printed within cancel_tickets
 
 
                     } catch (NumberFormatException e) {
