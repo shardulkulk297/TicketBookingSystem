@@ -58,6 +58,13 @@ public class TicketBookingSystem {
                     break;
                 }
                 case 2: {
+
+                    System.out.println("Created Events: ");
+                    for(int i=0; i<events.size(); i++){
+                        Event e = events.get(i);
+                        System.out.println(i+1+"." + " " + e.getEvent_name());
+                    }
+
                     System.out.print("Enter event index to view details: ");
                     int idx = Integer.parseInt(sc.nextLine());
                     if (idx >= 1 && idx <= events.size()) {
