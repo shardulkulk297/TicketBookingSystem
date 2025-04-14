@@ -1,5 +1,5 @@
 package Entity;
-class Customer {
+public class Customer {
     private String customer_name;
     private String email;
     private String phone_number;
@@ -40,5 +40,14 @@ class Customer {
         System.out.println("Customer Name: " + customer_name);
         System.out.println("Email: " + email);
         System.out.println("Phone Number: " + phone_number);
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customer_name='" + customer_name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                '}';
     }
 }

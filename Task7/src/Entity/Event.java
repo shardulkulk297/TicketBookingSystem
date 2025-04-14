@@ -2,27 +2,25 @@ package Entity;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-enum EventType {
-    Movie, Sports, Concert
-}
 
-class Event {
+
+public abstract class Event {
     private String event_name;
     private LocalDate event_date;
     private LocalTime event_time;
-    private String venue_name;
+    private Venue venue;
     private int total_seats;
     private int available_seats;
     private double ticket_price;
-    private EventType event_type;
+    private String event_type;
 
     public Event() { }
 
-    public Event(String event_name, LocalDate event_date, LocalTime event_time, String venue_name, int total_seats, double ticket_price, EventType event_type) {
+    public Event(String event_name, LocalDate event_date, LocalTime event_time, Venue venue, int total_seats, double ticket_price, String event_type) {
         this.event_name = event_name;
         this.event_date = event_date;
         this.event_time = event_time;
-        this.venue_name = venue_name;
+        this.venue = venue;
         this.total_seats = total_seats;
         this.available_seats = total_seats;
         this.ticket_price = ticket_price;
@@ -53,12 +51,12 @@ class Event {
         this.event_time = event_time;
     }
 
-    public String getVenue_name() {
-        return venue_name;
+    public Venue getVenue() {
+        return venue;
     }
 
-    public void setVenue_name(String venue_name) {
-        this.venue_name = venue_name;
+    public void setVenue(Venue venue) {
+        this.venue = venue;
     }
 
     public int getTotal_seats() {
@@ -85,13 +83,15 @@ class Event {
         this.ticket_price = ticket_price;
     }
 
-    public EventType getEvent_type() {
+    public String getEvent_type() {
         return event_type;
     }
 
-    public void setEvent_type(EventType event_type) {
+    public void setEvent_type(String event_type) {
         this.event_type = event_type;
     }
+
+
 
     public double calculate_total_revenue() {
         int ticketsSold = total_seats - available_seats;
@@ -118,16 +118,7 @@ class Event {
         return false;
     }
 
-    public void display_event_details() {
-        System.out.println("Event Name: " + event_name);
-        System.out.println("Event Date: " + event_date);
-        System.out.println("Event Time: " + event_time);
-        System.out.println("Venue Name: " + venue_name);
-        System.out.println("Total Seats: " + total_seats);
-        System.out.println("Available Seats: " + available_seats);
-        System.out.println("Ticket Price: " + ticket_price);
-        System.out.println("Event Type: " + event_type);
-    }
+    public abstract void display_event_details();
 }
 
 

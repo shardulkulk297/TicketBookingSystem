@@ -1,5 +1,5 @@
 package Entity;
-class Customer {
+public class Customer {
     private String customer_name;
     private String email;
     private String phone_number;

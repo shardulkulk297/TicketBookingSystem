@@ -1,5 +1,5 @@
 package Entity;
-class Venue {
+public class Venue {
     private String venue_name;
     private String address;
 
@@ -29,5 +29,13 @@ class Venue {
     public void display_venue_details() {
         System.out.println("Venue Name: " + venue_name);
         System.out.println("Address: " + address);
+    }
+
+    @Override
+    public String toString() {
+        return "Venue{" +
+                "venue_name='" + venue_name + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
